@@ -19,5 +19,5 @@ else:
 
 recovery_words = [x for x in words if x not in top_words_list]
 
-print sorted([(w, recovery_words.count(w)) for w in set(recovery_words)], key = lambda x:x[1], reverse=True)[:10]
+print sorted([(w, recovery_words.count(w)) for w in set(recovery_words)], key = lambda x:x[1], reverse=True)[:25]
 
