@@ -4,8 +4,8 @@ csv_f = csv.reader(f)
 i=1
 count=0
 text_file = open("Writing_for_new_comp.csv","w")
-#add alcohol names
-alist = ["marijuana","blunt","dope",
+#add alcohol/drug names
+drug_words = ["marijuana","blunt","dope",
 "ganja", "grass","herb", "joint", "bud",
 "mary jane"," pot", "reefer", "green", "trees",
 "smoke", "sinsemilla", "skunk", "weed","smoked","swallowed",
@@ -31,7 +31,7 @@ alist = ["marijuana","blunt","dope",
 "nitrites","isoamyl", "isobutyl", "cyclohexyl","laughing gas", "poppers", "snappers", "whippets"
          ]
 #add recovery words
-alist2= ["recovery","recover","tradition","addict","Withdrawal","treatment","Abstinence",
+rec_words= ["recovery","recover","tradition","addict","Withdrawal","treatment","Abstinence",
 "Acetaminophens","ACOA","Addiction Assessment","Addiction Treatment","Addiction","Addictive Personality",
 "Adverse Reaction","Affinity","Age at Onset","Agonist","Alcoholics Anonymous","AA","Alkaloids",
 "Amphetamine","Analgesic","Antagonist","AOD","AODA","Aspirin","Barbiturate","Benzodiazepine",
@@ -58,12 +58,12 @@ for row in csv_f:
         for k in row:
             temp = k.lower()
         #print ("This is temp:"+temp)
-        for j in range (len(alist)):
-            if (temp.count(alist[j].lower())>0):
-                bl=bl+(temp.count(alist[j].lower())/(len(temp)))
-        for cnt in range(len (alist2)):
-            if (temp.count(alist2[cnt].lower())>0):
-                bl2=bl2+((temp.count(alist2[cnt].lower())>0)/(len(temp)))
+        for drug_word in drug_words:
+            if (temp.count(drug_word.lower()) > 0):
+                bl = bl + (temp.count(drug_word.lower())/(len(temp)))
+        for rec_word in rec_words:
+            if (temp.count(rec_word.lower()) > 0):
+                bl2 = bl2 + ((temp.count(rec_word.lower())>0)/(len(temp)))
     
     text_file.write(str(bl)+","+str(bl2)+"\n")
     count=0
@@ -96,12 +96,12 @@ for row in csv_f:
         for k in row:
             temp = k.lower()
         #print ("This is temp:"+temp)
-        for j in range (len(alist)):
-            if (temp.count(alist[j].lower())>0):
-                bl=bl+(temp.count(alist[j].lower())/(len(temp)))
-        for cnt in range(len (alist2)):
-            if (temp.count(alist2[cnt].lower())>0):
-                bl2=bl2+((temp.count(alist2[cnt].lower())>0)/(len(temp)))
+        for j in range (len(drug_words)):
+            if (temp.count(drug_words[j].lower())>0):
+                bl=bl+(temp.count(drug_words[j].lower())/(len(temp)))
+        for cnt in range(len (rec_words)):
+            if (temp.count(rec_words[cnt].lower())>0):
+                bl2=bl2+((temp.count(rec_words[cnt].lower())>0)/(len(temp)))
     
             
     text_file.write(str(bl)+","+str(bl2)+"\n")

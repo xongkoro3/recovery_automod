@@ -5,13 +5,13 @@ import datetime
 import unicodedata
 import codecs
 
-r= praw.Reddit("Getting submissions from r/drugs by /u/scarface1993 v7.0")
+r= praw.Reddit("Getting submissions from subreddits by /u/scarface1993 v7.0")
 r.login #ENTER YOUR USERNAME AND PASSWORD
-alist=['alcohol','trees','stopdrinking','drugs','redditorsinrecovery','OpiatesRecovery','opiates','leaves','opiatesrecovery']
-for i in range(0,len(alist)):
+alist=['news','funny','todayilearned']
+for i in range(len(alist)):
     #Getting the subreddit
-    astring=alist[i]
-    subreddit= r.get_subreddit(astring)
+    astring = alist[i]
+    subreddit = r.get_subreddit(astring)
 
     #Getting the latest posts from the subreddit selected
     new_submissions= list(subreddit.get_new(limit=None))
@@ -106,95 +106,95 @@ for i in range(0,len(alist)):
                             text_post_comment.append(encode_body)
 
 
-    if astring=='drugs':
-        print('in drugs')
-        with codecs.open("Drugs-Posts-All(2).csv",'a','utf8') as csvfile:
+    if astring=='news':
+        print('in news')
+        with codecs.open("news_posts.csv",'a','utf8') as csvfile:
             a=csv.writer(csvfile)
             rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
             a.writerows(rows)
             
-        with codecs.open("Drug-Comments-All(2).csv",'a',encoding='utf8') as csvfile:
+        with codecs.open("news_comments.csv",'a',encoding='utf8') as csvfile:
             b=csv.writer(csvfile)
             row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
             b.writerows(row)
 
 
-    elif astring=='alcohol':
-        print('in alcohol')
-        with codecs.open("Alcohol-Posts-All(2).csv",'a','utf8') as csvfile:
+    elif astring=='funny':
+        print('in funny')
+        with codecs.open("funny_posts.csv",'a','utf8') as csvfile:
             
             a=csv.writer(csvfile)
             rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
             a.writerows(rows)
             
-        with codecs.open("Alcohol-Comments-All(2).csv",'a',encoding='utf8') as csvfile:
+        with codecs.open("funny_comments.csv",'a',encoding='utf8') as csvfile:
             b=csv.writer(csvfile)
             row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
             b.writerows(row)
 
-    elif astring=='trees':
-        print('in trees')
-        with codecs.open("Trees-Posts-All(2).csv","a",'utf8') as csvfile:
+    elif astring=='todayilearned':
+        print('in todayilearned')
+        with codecs.open("todayilearned_posts.csv","a",'utf8') as csvfile:
             
             a=csv.writer(csvfile)
             rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
             a.writerows(rows)
 
-        with codecs.open("Trees-Comments-All(2).csv","a",'utf8') as csvfile:
+        with codecs.open("todayilearned_comments.csv","a",'utf8') as csvfile:
             
             b=csv.writer(csvfile)
             row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
             b.writerows(row)
 
-    elif astring=='stopdrinking':
-        print('stopdrinking')
-        with codecs.open("Stop-Drinking-Posts-All(2).csv","a",'utf8') as csvfile:
-            a=csv.writer(csvfile)
-            rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
-            a.writerows(rows)
+    # elif astring=='stopdrinking':
+    #     print('stopdrinking')
+    #     with codecs.open("Stop-Drinking-Posts-All(2).csv","a",'utf8') as csvfile:
+    #         a=csv.writer(csvfile)
+    #         rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
+    #         a.writerows(rows)
 
-        with codecs.open("Stop-Drinking-Comments-All(2).csv","a",'utf8') as csvfile:
-            print("Stop drinking")
-            b=csv.writer(csvfile)
-            row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
-            b.writerows(row)
+    #     with codecs.open("Stop-Drinking-Comments-All(2).csv","a",'utf8') as csvfile:
+    #         print("Stop drinking")
+    #         b=csv.writer(csvfile)
+    #         row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
+    #         b.writerows(row)
 
-    elif astring=='redditorsinrecovery':
-        print('redditorsinrecovery')
-        with codecs.open("Redditors-In-recovery-Posts-All(2).csv","a",'utf8') as csvfile:
-            a=csv.writer(csvfile)
-            rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
-            a.writerows(rows)
+    # elif astring=='redditorsinrecovery':
+    #     print('redditorsinrecovery')
+    #     with codecs.open("Redditors-In-recovery-Posts-All(2).csv","a",'utf8') as csvfile:
+    #         a=csv.writer(csvfile)
+    #         rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
+    #         a.writerows(rows)
 
-        with codecs.open("Redditors-In-recovery-Comments-All(2).csv","a",'utf8') as csvfile:
-            print("Stop drinking")
-            b=csv.writer(csvfile)
-            row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
-            b.writerows(row)
+    #     with codecs.open("Redditors-In-recovery-Comments-All(2).csv","a",'utf8') as csvfile:
+    #         print("Stop drinking")
+    #         b=csv.writer(csvfile)
+    #         row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
+    #         b.writerows(row)
 
-    elif astring=='OpiatesRecovery':
-        print('OpiatesRecovery')
-        with codecs.open("Opiates-Recovery-Posts-All(2).csv","a",'utf8') as csvfile:
-            a=csv.writer(csvfile)
-            rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
-            a.writerows(rows)
+    # elif astring=='OpiatesRecovery':
+    #     print('OpiatesRecovery')
+    #     with codecs.open("Opiates-Recovery-Posts-All(2).csv","a",'utf8') as csvfile:
+    #         a=csv.writer(csvfile)
+    #         rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
+    #         a.writerows(rows)
 
-        with codecs.open("Opiates-Recovery-Comments-All(2).csv","a",'utf8') as csvfile:
-            print("Stop drinking")
-            b=csv.writer(csvfile)
-            row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
-            b.writerows(row)
+    #     with codecs.open("Opiates-Recovery-Comments-All(2).csv","a",'utf8') as csvfile:
+    #         print("Stop drinking")
+    #         b=csv.writer(csvfile)
+    #         row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
+    #         b.writerows(row)
 
 
-    elif astring=='opiates':
-        print('opiates')
-        with codecs.open("Opiates-Posts-All(2).csv","a",'utf8') as csvfile:
-            a=csv.writer(csvfile)
-            rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
-            a.writerows(rows)
+    # elif astring=='opiates':
+    #     print('opiates')
+    #     with codecs.open("Opiates-Posts-All(2).csv","a",'utf8') as csvfile:
+    #         a=csv.writer(csvfile)
+    #         rows=zip(sub_ids_post,authors_post,time_stamp_post,title_post,text_post)
+    #         a.writerows(rows)
 
-        with codecs.open("Opiates-Comments-All(2).csv","a",'utf8') as csvfile:
-            print("Stop drinking")
-            b=csv.writer(csvfile)
-            row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
-            b.writerows(row)
+    #     with codecs.open("Opiates-Comments-All(2).csv","a",'utf8') as csvfile:
+    #         print("Stop drinking")
+    #         b=csv.writer(csvfile)
+    #         row=zip(post_id_comment,sub_ids_comment,authors_comment,time_stamp_comment,text_post_comment)
+    #         b.writerows(row)
